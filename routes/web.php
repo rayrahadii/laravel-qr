@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormInput\BarangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('login');
+});
+
+Route::controller(BarangController::class)->group(function () {
+  Route::prefix('barang')->group(function () {
+    Route::get('/input','inputView');
+  });
+});
+
+Route::get('/test', function () {
+    return view('barang/input');
 });
